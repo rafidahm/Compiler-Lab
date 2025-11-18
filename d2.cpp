@@ -61,3 +61,14 @@ int main() {
     return 0;
 }
 
+
+
+// Inside the while loop, before processing the line
+if (s[i] == '/' && s[i+1] == '/') break; // single-line comment, ignore rest
+if (s[i] == '/' && s[i+1] == '*') {      // multi-line comment
+    i += 2;
+    while (!(s[i] == '*' && s[i+1] == '/') && s[i] != '\0') i++;
+    if (s[i] == '*' && s[i+1] == '/') i += 2;
+    continue;
+}
+
