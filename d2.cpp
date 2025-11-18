@@ -4,44 +4,55 @@
 #include <cstring>
 using namespace std;
 
+// Function to check if a character is a letter or underscore
 int isLetter(char c) {
-    return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c == '_');
+    return (c >= 'a' && c <= 'z') || 
+           (c >= 'A' && c <= 'Z') || 
+           (c == '_');
 }
 
+// Function to check if a character is a digit
 int isDigit(char c) {
     return (c >= '0' && c <= '9');
 }
 
 int main() {
-    char s[1000];
-    int identifierCount = 0;
+    char s[1000];  // Input line buffer
+    int identifierCount = 0;  // Count of identifiers
 
-    while (cin.getline(s, 1000)) {
-        int i = 0;
-        char token[100];
-        int t;
+    while (cin.getline(s, 1000)) {  // Read code line by line
+        int i = 0;  // Index for traversing the line
+        char token[100];  // Temporary storage for token
+        int t;  // Index for token array
 
-        while (s[i] != '\0') {
-            if (s[i] == ' ' || s[i] == '\t' || s[i]=='\n') {
+        while (s[i] != '\0') {  // Loop through the line
+
+            // Skip spaces, tabs, newlines
+            if (s[i] == ' ' || s[i] == '\t' || s[i] == '\n') {
                 i++;
                 continue;
             }
 
+            // Start of a token (letter or underscore)
             if (isLetter(s[i])) {
-                t = 0;
-                while (isLetter(s[i]) || isDigit(s[i])) {
+                t = 0;  // Start token
+                while (isLetter(s[i]) || isDigit(s[i])) {  // Collect token
                     token[t++] = s[i++];
                 }
-                token[t] = '\0';
+                token[t] = '\0';  // End token
 
+                // Check if token is NOT a keyword
                 if (!(strcmp(token,"int")==0 || strcmp(token,"float")==0 ||
                       strcmp(token,"if")==0 || strcmp(token,"else")==0 ||
                       strcmp(token,"for")==0 || strcmp(token,"while")==0 ||
-                      strcmp(token,"return")==0))
-                    identifierCount++;
+                      strcmp(token,"return")==0)) {
+                    identifierCount++;  // Count as identifier
+                }
 
-                continue;
+                continue;  // Go to next token
             }
+
+            // Skip other characters
             i++;
         }
     }
@@ -49,3 +60,4 @@ int main() {
     cout << "Total Identifiers: " << identifierCount << endl;
     return 0;
 }
+
