@@ -11,7 +11,7 @@ int main() {
 
         int onlyA = 1;
         while (s[i] != '\0') {
-            if (s[i] != 'a') onlyA = 0;
+            if (s[i] != 'a') onlyA = 0; // Found a character not 'a'
             i++;
         }
         if (onlyA == 1) ok = 1; // If all are 'a', ACCEPT
@@ -24,4 +24,5 @@ int main() {
     }
     return 0;
 }
+
 
