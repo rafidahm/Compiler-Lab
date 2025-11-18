@@ -1,5 +1,5 @@
 
-// 3. Construct an NFA using Thompson’s Algorithm for: a*|b(a|b)
+// 3. Construct an NFA using Thompsonâ€™s Algorithm for: a*|b(a|b)
 #include <iostream>
 using namespace std;
 
@@ -14,7 +14,7 @@ int main() {
             if (s[i] != 'a') onlyA = 0;
             i++;
         }
-        if (onlyA == 1) ok = 1;
+        if (onlyA == 1) ok = 1; // If all are 'a', ACCEPT
 
         i = 0;
         if (s[0] == 'b' && (s[1] == 'a' || s[1] == 'b') && s[2] == '\0') ok = 1;
@@ -24,3 +24,4 @@ int main() {
     }
     return 0;
 }
+
